@@ -3,7 +3,13 @@
     --> purchase_cost = quantity * purchase_price
 */
 
-SELECT *
+SELECT
+    products_id
+    , date_date
+    , orders_id
+    , revenue
+    , quantity
+    , purchase_price
     , sales.quantity * product.purchase_price AS purchase_cost
     , sales.revenue - (sales.quantity * product.purchase_price) AS margin
 FROM {{ ref('stg_raw__sales') }} AS sales
