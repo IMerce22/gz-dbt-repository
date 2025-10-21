@@ -13,6 +13,7 @@ with source AS
         date_date
         , orders_id
         , pdt_id AS products_id
+        , CONCAT(orders_id, "-", pdt_id) AS orders_products_id
         , revenue
         , quantity
 
