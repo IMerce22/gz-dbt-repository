@@ -1,7 +1,7 @@
-#define sources
+#define sources --> aqui identificamos onde estao os dados e podemos renomea-los para ser mais facil de os identificar ao longo do projeto
 version: 2
 sources:
-  - name: raw
+  - name: raw                         # em vez de "wired-office-473608-g9" apenas "raw"
     database: wired-office-473608-g9  # project ID
     schema: gz_raw_data               # dataset on BigQuery
     tables:
