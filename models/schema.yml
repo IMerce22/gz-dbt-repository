@@ -1,9 +1,9 @@
 #define sources
 version: 2
-
 sources:
   - name: raw
-    schema: gz_raw_data
+    database: wired-office-473608-g9  # project ID
+    schema: gz_raw_data               # dataset on BigQuery
     tables:
       - name: sales
         identifier: raw_gz_sales
