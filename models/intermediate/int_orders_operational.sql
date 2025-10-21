@@ -14,7 +14,9 @@ SELECT
     , orders.revenue
     , orders.quantity
     , orders.purchase_cost
-    , orders.margin
+    , ship.ship_cost
+    , ship.shipping_fee
+    , ship.logCost
 FROM {{ ref('int_orders_margin') }} AS orders
 JOIN {{ ref('stg_raw__ship') }} AS ship
 USING (orders_id)
@@ -25,5 +27,8 @@ GROUP BY
     , orders.quantity
     , orders.purchase_cost
     , orders.margin
+    , ship.ship_cost
+    , ship.shipping_fee
+    , ship.logCost
 ORDER BY 
     orders.orders_id DESC

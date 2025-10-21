@@ -12,21 +12,18 @@ Total quantity of products sold.
 */
 
 SELECT
-    orders.date_date
-    , SUM (orders.orders_id) AS Total_transactions
-    , SUM (orders.revenue) AS Total_revenue
-    , (orders.revenue/COUNT(orders.orders_id))  AS Average_Basket
-    , orders.operational_margin
-    , orders.purchase_cost
-    , ROUND (SUM (ship.shipping_fee), 2) AS Total_shipping_fees
-    , ROUND (SUM (ship.logCost), 2) AS Total_log_costs
-    , ROUND (SUM (orders.quantity), 0) AS qty_products_sold
- 
-FROM {{ ref('int_orders_operational') }} AS orders
-JOIN {{ ref('stg_raw__ship') }} AS ship
-USING(orders_id)
+    date_date
+    , SUM (orders_id) AS Total_transactions
+    , SUM (revenue) AS Total_revenue
+    , (revenue/COUNT(orders_id))  AS Average_Basket
+    , operational_margin
+    , purchase_cost
+    , ROUND (SUM (shipping_fee), 2) AS Total_shipping_fees
+    , ROUND (SUM (logCost), 2) AS Total_log_costs
+    , ROUND (SUM (quantity), 0) AS qty_products_sold
+FROM {{ ref('int_orders_operational') }}
 GROUP BY 
-    orders.date_date
-    , orders.revenue
-    , orders.operational_margin
-    , orders.purchase_cost
+    date_date
+    , revenue
+    , operational_margin
+    , purchase_cost
