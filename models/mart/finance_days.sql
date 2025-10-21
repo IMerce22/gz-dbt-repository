@@ -14,16 +14,13 @@ Total quantity of products sold.
 SELECT
     date_date
     , SUM (orders_id) AS Total_transactions
-    , SUM (revenue) AS Total_revenue
-    , (revenue/COUNT(orders_id))  AS Average_Basket
-    , operational_margin
-    , purchase_cost
+    , ROUND (SUM (revenue), 2) AS Total_revenue
+    , ROUND(SUM(revenue)/COUNT(orders_id), 2)  AS Average_Basket
+    , ROUND (SUM (operational_margin), 2) AS operational_margin
+    , ROUND (SUM (purchase_cost), 2) AS purchase_cost
     , ROUND (SUM (shipping_fee), 2) AS Total_shipping_fees
     , ROUND (SUM (logCost), 2) AS Total_log_costs
     , ROUND (SUM (quantity), 0) AS qty_products_sold
 FROM {{ ref('int_orders_operational') }}
 GROUP BY 
     date_date
-    , revenue
-    , operational_margin
-    , purchase_cost
