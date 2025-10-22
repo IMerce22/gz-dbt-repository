@@ -1,0 +1,58 @@
+# define sources --> aqui identificamos onde estao os dados e podemos renomea-los 
+# para ser mais facil de os identificar ao longo do projeto
+
+
+version: 2
+sources:
+  - name: raw                         # em vez de "wired-office-473608-g9" apenas "raw"
+    database: wired-office-473608-g9  # project ID
+    schema: gz_raw_data               # dataset on BigQuery
+    tables:
+        - name: sales
+          identifier: raw_gz_sales
+          description: sales of Greenweez / product_id per row associated to each orders_id
+          loaded_at_field: date_date
+          freshness:
+            warn_after: {count: 90, period: day}   # avisa se a última linha tiver > 90 dias
+          columns:
+#            - name: orders_products_id  # criei uma nova coluna com a concatenaçao de orders_id + products_id
+#              description: primary key of the table, agregation of orders_id with products_id
+#              tests:
+#                - unique
+#                - not_null
+            - name: date_date
+              description: date of purchase
+            - name: orders_id
+              description: identification of the orders
+            - name: products_id
+              description: identification of the ptoducts
+            - name: revenue
+              description: revenue associated to each ptoduct
+            - name: quantity
+              description: quantity of ptoducts per order_id
+        - name: product
+          identifier: raw_gz_product
+          description: products of Greenweez / product_id per row associated to each purchase_price
+          columns:
+            - name: products_id
+              description: a row per product_id
+              tests:
+                - unique
+                - not_null
+            - name: purchase_price
+              description: price associated to each product_id
+        - name: ship
+          identifier: raw_gz_ship
+          description: ships of Greenweez / orders_id per row associated to each ship_cost
+          columns:
+            - name: orders_id
+              description: order_id per row
+              tests:
+                - unique
+                - not_null
+            - name: shipping_fee
+              description: a shipping_fee associated to each order_id shipped
+            - name: logCost
+              description: log costs associated to each ship
+            - name: ship_cost
+              description: each ship cost, it's a fixed value (2.0)
