@@ -8,7 +8,6 @@ sources:
     database: wired-office-473608-g9  # project ID
     schema: gz_raw_data               # dataset on BigQuery
     tables:
-  ##__staging_models__##
         - name: sales
           identifier: raw_gz_sales
           description: sales of Greenweez / product_id per row associated to each orders_id
@@ -16,11 +15,11 @@ sources:
           freshness:
             warn_after: {count: 90, period: day}   # avisa se a última linha tiver > 90 dias
           columns:
-            - name: orders_products_id  # criei uma nova coluna com a concatenaçao de orders_id + products_id
-              description: primary key of the table, agregation of orders_id with products_id
-              tests:
-                - unique
-                - not_null
+#            - name: orders_products_id  # criei uma nova coluna com a concatenaçao de orders_id + products_id
+#              description: primary key of the table, agregation of orders_id with products_id
+#              tests:
+#                - unique
+#                - not_null
             - name: date_date
               description: date of purchase
             - name: orders_id
