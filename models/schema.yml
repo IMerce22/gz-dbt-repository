@@ -1,0 +1,152 @@
+
+    version: 2
+    models: 
+##__intermediate_models__##
+#int_sales_margin#
+      - name: int_sales_margin
+        description: purchase cost and gross margin by product and sale
+        columns: 
+          - name: products_id
+            description: number that identify the product, per raw
+            tests:
+              - not_null
+          - name: date_date
+            description: date of the sale
+            tests:
+              - not_null
+          - name: orders_id
+            description: number that identify the the order
+            tests:
+              - not_null
+          - name: revenue
+            description: total sale value of the product within the order.
+            tests:
+              - not_null
+          - name: quantity
+            description: quantity of products sold
+            tests:
+              - not_null
+          - name: purchase_price
+            description: Unit cost of the product to the company.
+            tests:
+              - not_null
+          - name: purchase_cost
+            description: Cost of the entire quantity sold of that product in that sale
+            tests:
+              - not_null
+          - name: margin
+            description: return per product
+            tests:
+              - not_null
+#int_orders_margin#
+      - name: int_orders_margin
+        description:
+        columns: 
+          - name: orders_id
+            description: number that identify the the order
+            tests:
+              - not_null
+              - unique
+          - name: date_date
+            description: date of the sale
+            tests:
+              - not_null
+          - name: revenue
+            description: revenue of the order
+            tests:
+              - not_null
+          - name: quantity
+            description: quantity of products sold per order
+            tests:
+              - not_null
+          - name: purchase_cost
+            description: cost total for the company per order
+            tests:
+              - not_null
+          - name: margin
+            description: return per each order
+            tests:
+              - not_null              
+#int_orders_operational#
+      - name: int_orders_operational
+        description: operational margin per order, including all the costs as purchases
+        columns:
+          - name: orders_id
+            description: number that identify the order
+            tests:
+              - not_null
+              - unique
+          - name: date_date
+            description: date that that order was made
+            tests:
+              - not_null
+          - name: operational_margin
+            description: return without all the cost fot the company
+            tests:
+              - not_null
+          - name: revenue
+            description: total amount received from each order
+            tests:
+              - not_null
+          - name: quantity
+            description: quantaty of products sold per each order
+            tests:
+              - not_null
+          - name: purchase_cost
+            description: total amount of the expense per order
+            tests:
+              - not_null
+          - name: ship_cost
+            description: costs to the company to organize the shipping per each order
+            tests:
+              - not_null
+          - name: shipping_fee
+            description: total amount paid from the clients for shipping per each order
+            tests:
+              - not_null
+          - name: logCost
+            description: cost of internal logistics (preparing, packaging, storing, processing) per order
+            tests:
+              - not_null
+##__mart_models__##
+#finance_days#
+      - name: finance_days
+        description: Summarizes daily financial indicators, including revenue, operating margin, and transaction volume.
+        columns:
+          - name: date_date
+            description: table organized per days
+            tests:
+              - not_null
+              - unique
+          - name: Total_transactions
+            description: number os transactions per day
+            tests:
+              - not_null
+          - name: Total_revenue
+            description: the total amount received from the sales per day
+            tests:
+              - not_null
+          - name: Average_Basket
+            description: average amount in the basket per day
+            tests:
+              - not_null
+          - name: operational_margin
+            description: financial return per day, already excluding all costs involved
+            tests:
+              - not_null
+          - name: purchase_cost
+            description: total cost of all the products per day
+            tests:
+              - not_null
+          - name: Total_shipping_fees
+            description: total amount paid about shipping taxes from the clients per day
+            tests:
+              - not_null
+          - name: Total_log_costs
+            description: cost of internal logistics (preparing, packaging, storing, processing) per day
+            tests:
+              - not_null
+          - name: qty_products_sold
+            description: how many products were sold per day
+            tests:
+              - not_null
