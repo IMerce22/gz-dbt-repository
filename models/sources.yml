@@ -56,3 +56,87 @@ sources:
               description: log costs associated to each ship
             - name: ship_cost
               description: each ship cost, it's a fixed value (2.0)
+
+        - name: adwords
+          identifier: raw_gz_adwords
+          description: data about adwords campaign
+          columns:
+            - name: campaign_id
+              description: agregation of the paid_source, date_date and campaign_key to generate a unique value per row.
+            - name: date_date
+              description: date of the campaign
+            - name: paid_source
+              description: source brand
+            - name: campaign_key
+              description: number identifyer of the campaing
+            - name: camPGN_name
+              description: name of the campaing
+            - name: ads_cost
+              description: cost per each advertising
+            - name: impression
+              description: number of times the advertising was displayed
+            - name: click
+              description: number of times users clicked on the advertising
+
+        - name: bing
+          identifier: raw_gz_bing
+          description: data about bing campaign
+          columns:
+            - name: campaign_id
+              description: agregation of the paid_source, date_date and campaign_key to generate a unique value per row.
+            - name: date_date
+              description: date of the campaign
+            - name: paid_source
+              description: source brand
+            - name: campaign_key
+              description: number identifyer of the campaing
+            - name: camPGN_name
+              description: name of the campaing
+            - name: ads_cost
+              description: cost per each advertising
+            - name: impression
+              description: number of times the advertising was displayed
+            - name: click
+              description: number of times users clicked on the advertising
+
+        - name: criteo
+          identifier: raw_gz_criteo
+          description: data about criteo campaign
+          columns:
+            - name: campaign_id
+              description: agregation of the paid_source, date_date and campaign_key to generate a unique value per row.
+            - name: date_date
+              description: date of the campaign
+            - name: paid_source
+              description: source brand
+            - name: campaign_key
+              description: number identifyer of the campaing
+            - name: camPGN_name
+              description: name of the campaing
+            - name: ads_cost
+              description: cost per each advertising
+            - name: impression
+              description: number of times the advertising was displayed
+            - name: click
+              description: number of times users clicked on the advertising
+
+        - name: facebook
+          identifier: raw_gz_facebook
+          description: data about facebook campaign
+          columns:
+            - name: campaign_id
+              description: agregation of the paid_source, date_date and campaign_key to generate a unique value per row.
+            - name: date_date
+              description: date of the campaign
+            - name: paid_source
+              description: source brand
+            - name: campaign_key
+              description: number identifyer of the campaing
+            - name: camPGN_name
+              description: name of the campaing
+            - name: ads_cost
+              description: cost per each advertising
+            - name: impression
+              description: number of times the advertising was displayed
+            - name: click
+              description: number of times users clicked on the advertising

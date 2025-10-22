@@ -92,3 +92,67 @@ models:
             description: cost of internal logistics (preparing, packaging, storing, processing) per day
           - name: qty_products_sold
             description: how many products were sold per day
+
+
+      - name: int_campaigns.sql
+        description: Aggregated data from multiple ad platforms showing daily campaign performance (cost, impressions, and clicks).
+        columns:
+          - name: campaign_id
+            description: agregation of the paid_source, date_date and campaign_key to generate a unique value per row.
+            tests: [not_null, unique]
+          - name: date_date
+            description: table organized per days
+          - name: paid_source
+            description: source brand
+          - name: campaign_key
+            description: number identifyer of the campaing
+          - name: campaign_name
+            description: name of the campaing
+          - name: ads_cost
+            description: cost per each advertising
+          - name: impression
+            description: number of times the advertising was displayed
+          - name: click
+            description: number of times users clicked on the advertising
+
+      - name: int_campaigns_day
+        description: daily aggregated advertising campaign data
+        columns:
+          - name: date_date
+            description: date of the campaign data
+          - name: ads_cost
+            description: total advertising cost per day
+          - name: ads_impression
+            description: total number of ad impressions per day
+          - name: ads_clicks
+            description: total number of ad clicks per day
+          - name: ads_quantity
+            description: total quantity of products sold per day
+
+      - name: finance_campaigns_day
+        description: Daily summary of operating and campaign margin, including costs, impressions, clicks, and average basket value.
+        columns:
+          - name: date_date
+            description: table organized per days
+          - name: ads_margin 
+            description:  daily profit after advertising costs
+          - name: Average_Basket
+            description: average revenue per transaction
+          - name: operational_margin
+            description: total profit excluding advertising costs
+          - name: ads_cost
+            description: total advertising expenses per day
+          - name: ads_impression
+            description: number of ad displays per day
+          - name: ads_clicks
+            description: number of ad clicks per day
+          - name: ads_quantity
+            description: number of ads per day
+          - name: Total_revenue
+            description: total revenue generated per day
+          - name: purchase_cost
+            description: total cost of purchased goods per day
+          - name: Total_shipping_fees
+            description: total shipping fees paid by clients per day
+          - name: Total_log_costs
+            description: total internal logistics costs per day
