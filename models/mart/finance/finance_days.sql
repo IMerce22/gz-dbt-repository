@@ -11,6 +11,8 @@ Total log costs
 Total quantity of products sold.
 */
 
+{{ config (materialized = 'table') }}
+
 SELECT
     date_date
     , SUM (orders_id) AS Total_transactions
