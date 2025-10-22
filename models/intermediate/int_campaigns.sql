@@ -1,19 +1,13 @@
 /*JUNTAR AS 4 TABELAS DAS CAMPANHAS*/
 
-SELECT  *
-FROM {{ ref('stg_raw__facebook') }}
+{{ config(materialized='table') }}
 
-UNION ALL
-
-SELECT *
-FROM {{ ref('stg_raw__bing') }}
-
-UNION ALL
-
-SELECT *
-FROM {{ ref('stg_raw__criteo') }}
-
-UNION ALL
-
-SELECT *
-FROM {{ ref('stg_raw__adwords') }}
+{{ dbt_utils.union_relations(
+    relations=[
+        ref('stg_raw__facebook'),
+        ref('stg_raw__bing'),
+        ref('stg_raw__criteo'),
+        ref('stg_raw__adwords')
+    ],
+    include='all',
+) }}
